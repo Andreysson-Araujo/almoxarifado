@@ -66,8 +66,16 @@ $password_type = filter_input(INPUT_POST, "password_type");
     
     //atualizar senha
     } else if($type === "changepassword") {
-        $name = filter_input(INPUT_POST, "name");
-        $nickname = filter_input(INPUT_POST, "nickname");
+        $password = filter_input(INPUT_POST, "password");
+        $confirmPassword = filter_input(INPUT_POST, "confirmpassword");
+        $id = filter_input(INPUT_POST, "id");
+
+        if($password == $confirmPassword) {
+
+        } else {
+            $message->setMessage("As senhas não sao iguais!", "error", "index.php");    
+        }
+
         
     } else {
         $message->setMessage("Informações inválidas!", "error", "index.php");
