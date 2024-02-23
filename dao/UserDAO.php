@@ -73,11 +73,24 @@
       $stmt->bindParam(":id", $user->id); 
 
       $stmt->execute();
-
-      if($redirect) {
+ 
         //direciona para o perfil do usuario
-        $this->message->setMessage("Dados Atualizados com sucesso!", "success", "editprofile.php");
-      }
+      $this->message->setMessage("Dados Atualizados com sucesso!", "success", "editprofile.php");
+      
+    }
+
+    public function changePassword(User $user) {
+
+      $stmt = $this->conn->prepare("UPDATE users SET
+        password = :password
+        WHERE id = :id
+      ");
+      $stmt->bindParam(":password", $user->password);
+      $stmt->bindParam(":id", $user->id);
+
+      $stmt->execute();
+
+      $this->message->setMessage("Senha alterada com sucesso!", "success", "editprofile.php");
 
     }
 
@@ -236,10 +249,8 @@
     public function destroyToken() {
       $_SESSION["token"] = "";
 
-      $this->message->setMessage("Você deslogou com sucesso!", "success", "auth.php");
+      $this->message->setMessage("Você deslogou com sucesso!", "success", "index.php");
     }
 
-    public function changePassword(User $user) {
-
-    }
+    
   }

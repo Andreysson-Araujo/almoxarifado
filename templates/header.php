@@ -49,7 +49,7 @@ $userData = $userDao->verifyToken(false);
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
                 <img src="<?= $BASE_URL ?>img/logo.png" alt="MovieStar" id="logo">
-                <span id="moviestar-title">!Organize</span>
+                <span id="organize-title">!Organize</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
                 aria-controls="navbar" aria-expanded="false" area-label="Toggle navigation">
@@ -68,7 +68,7 @@ $userData = $userDao->verifyToken(false);
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>addItem.php" class="nav-link"><i class="far fa-plus-square"></i>Add item</a>
                         </li><li class="nav-item">
-                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Add categoria:</a>
+                            <a href="<?= $BASE_URL ?>addcategoria.php" class="nav-link">Add categoria:</a>
                         </li><li class="nav-item">
                             <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link"><strong><?= $userData->name ?></strong></a>
                         </li><li class="nav-item">

@@ -9,7 +9,7 @@
     width: 200px;
 }
 
-#moviestar-title {
+#organize-title {
     color: #fff;
     position: absolute;
     bottom: -2px;
@@ -19,6 +19,7 @@
 
 #main-navbar {
     background-color: #b1b0b0;
+    
 }
 #search-form{
     margin: 0 auto;
@@ -167,6 +168,16 @@
     bottom: 0;
     width: 100%;
 }
+
+/*add item*/
+.main-title{
+   margin-top: 45px;
+}
+
+#btnbtn{
+    margin-bottom: 200px;
+}
+
 
 #social-container ul,
 #footer-links-container ul {
