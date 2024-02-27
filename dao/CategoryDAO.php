@@ -24,7 +24,14 @@ class CategoryDAO implements CategoryDAOInterface {
     }
 
     public function create(Category $category){
-        
+        $stmt=$this->conn->prepare("INSERT INTO categories(category) VALUES(:category)");
+
+        $stmt->bindParam(":category", $category->category);
+
+        $stmt->execute();
+
+        $this->message->setMessage("Categoria criada com sucesso!", "success", "showcategories.php");
+
     }
     public function update(Category $category){
         
@@ -33,8 +40,20 @@ class CategoryDAO implements CategoryDAOInterface {
         
     }
     public function findById($id){
+
+    }
+    public function findAll() {
+        $stmt = $this->conn->prepare("SELECT * FROM categories");
+        $stmt->execute();
         
-}
+        $categories = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $categories[] = $this->buildCategories($row);
+        }
+        
+        return $categories;
+    }
+    
 
 }
 ?>

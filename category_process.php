@@ -1,21 +1,22 @@
 <?php
-    require_once("db.php");
-    require_once("models/Categories.php");
-    require_once("models/Message.php");
-    //require_once("dao/CategoryDao.php");
-    require_once("globals.php");
+require_once("db.php");
+require_once("models/Categories.php");
+require_once("models/Message.php");
+require_once("dao/CategoryDAO.php");
+require_once("globals.php");
 
-    $type = filter_input(INPUT_POST, "type");
-    $categoryName = filter_input(INPUT_POST, "category");
+$message = new Message($BASE_URL);
+$categoryDao = new CategoryDAO($conn, $BASE_URL);
 
-    if($type === "create" && !empty($categoryName)) {
-        $category = filter_input(INPUT_POST, "category ");
+$type = filter_input(INPUT_POST, "type");
+$categoryName = filter_input(INPUT_POST, "category");
 
-        $category = new Category();
-
-        $category->category = $categoryName;
-        
-        echo $categoryName;
-    } 
-
+if ($type === "create" && !empty($categoryName)) {
+    $category = new Category();
+    $category->category = $categoryName;
+    
+    $categoryDao->create($category);
+} else {
+    $message->setMessage("Por favor preencha todos os campos", "error", "back");
+}
 ?>

@@ -154,6 +154,36 @@
     width: auto;
 }
 
+/*SHOW CATEGORIES */
+
+.container-category {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center; 
+}
+
+.table {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.table th,
+.table td {
+    padding: 8px; 
+    border: 1px solid #ddd; 
+}
+
+.table th {
+    background-color: #f2f2f2; /* Cor de fundo para as células do cabeçalho */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cor de fundo para linhas pares */
+}
+
+
+
+
 
 /* FOOTER */
 
@@ -163,7 +193,7 @@
     text-align: center;
     margin: 0;
     padding: 0.1px;
-    position: fixed;
+   /* position: fixed;*/
     left: 0;
     bottom: 0;
     width: 100%;
