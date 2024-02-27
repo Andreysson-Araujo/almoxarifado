@@ -28,7 +28,7 @@ include_once("templates/header.php");
                     <tr>
                         <td><?= $category->category ?></td>
                         <td>
-                            <button class="btn btn-primary">Editar</button>
+                            <a href="editcategory.php?id=<?= $category->id ?>" class="btn btn-primary">Editar</a>
                             <button class="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
@@ -40,5 +40,5 @@ include_once("templates/header.php");
     </div>
 </div>
 <?php
-include_once("templates/footer.php");
+    include_once("templates/footer.php")
 ?>
