@@ -191,13 +191,13 @@
     background-color: #b1b0b0;
     color: #fff;
     text-align: center;
-    margin: 0;
-    padding: 0.1px;
-   /* position: fixed;*/
+    padding: 10px;
+    width: 100%;
+    position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
 }
+
 
 /*add item*/
 .main-title{

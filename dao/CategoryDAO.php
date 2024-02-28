@@ -40,6 +40,27 @@ class CategoryDAO implements CategoryDAOInterface {
         
     }
     public function findById($id){
+        
+
+        $stmt = $this->conn->prepare("SELECT * FROM categories WHERE id = :id");
+
+        $stmt->bindValue(":id", $id);
+
+        $stmt->execute();
+
+        $category = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($category) {
+            if ($category) {
+                return $this->buildCategories($category);
+            }else{
+                
+                return null;
+
+            }  
+        }
+                
+        
 
     }
     public function findAll() {
