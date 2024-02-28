@@ -33,12 +33,27 @@ class CategoryDAO implements CategoryDAOInterface {
         $this->message->setMessage("Categoria criada com sucesso!", "success", "showcategories.php");
 
     }
-    public function update(Category $category){
+    public function update(Category $category, $redirect = true) {
+        $stmt = $this->conn->prepare("UPDATE categories SET category = :category WHERE id = :id");
+        $stmt->bindParam(":category", $category->category);
+        $stmt->bindParam(":id", $category->id);
+        $stmt->execute();
+
+        $this->message->setMessage("Categoria Atualizada com sucesso!", "success", "showcategories.php");
         
     }
-    public function destroy($id){
+
+    public function destroy($id, $setMessage = true) {
+        $stmt = $this->conn->prepare("DELETE FROM categories WHERE id= :id");
+        $stmt->bindValue(":id", $id);
+        
+        $stmt->execute();
+        
+        
+        $this->message->setMessage("Categoria removida!", "success", "showcategories.php");
         
     }
+    
     public function findById($id){
         
 

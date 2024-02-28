@@ -3,7 +3,7 @@
 ?>
 
     <div id="main-container" class="container-fluid">
-        <h1>Corpo do site</h1>
+        <h1>Sistema de gerenciamento e organzação de almoxarifado</h1>
     </div>
 <?php
     require_once("templates/footer.php")
