@@ -1,10 +1,12 @@
 <?php
 include_once("templates/header.php");
-/*revisar 
+include_once("models/Categories.php");
+require_once("dao/CategoryDAO.php");
+
 $categoryDao = new CategoryDAO($conn, $BASE_URL);
 $categories = $categoryDao->findAll();
-*/
-    ?>
+
+?>
 <div class="container">
     <?php include_once("templates/backbtn.html"); ?>
     <h1 class="main-title">Adicionar Item</h1>
