@@ -2,6 +2,7 @@
 
     include_once("models/Items.php");
     include_once("models/Message.php");
+    require_once("dao/CategoryDAO.php");
 
     class ItemDAO implements ItemDAOInterface {
         private $conn;
@@ -16,9 +17,17 @@
     
         public function buildItems($data) {
             $item = new Item();
-            // Implemente a lógica para construir um objeto Item com base nos dados fornecidos
+            $item->id = $data['id'];
+            $item->name = $data['name'];
+            $item->patrimony = $data['patrimony'];
+            $item->categories_id = $data['categories_id'];
+            $item->register_as = $data['register_as'];
+            $item->public_date = $data['public_date'];
+            $item->made_by = $data['made_by'];
+            $item->observations = $data['observations'];
             return $item;
         }
+        
     
         public function findById($id) {
             $stmt = $this->conn->prepare("SELECT * FROM items WHERE id = :id");
@@ -36,16 +45,19 @@
         }
     
         public function create(Item $item) {
-            $stmt = $this->conn->prepare("INSERT INTO items (name, patrimony, category, register_as, public_date, made_by, observations) VALUES (:name, :patrimony, :category, :register_as, :public_date, :made_by, :observations)");
+            $stmt = $this->conn->prepare("INSERT INTO items (name, patrimony, categories_id, register_as, public_date, made_by, observations) VALUES (:name, :patrimony, :categories_id, :register_as, :public_date, :made_by, :observations)");
             $stmt->bindParam(":name", $item->name);
             $stmt->bindParam(":patrimony", $item->patrimony);
-            $stmt->bindParam(":categories_id", $item->categories_id);
+            $stmt->bindParam(":categories_id", $item->categories_id); // Corrigido
             $stmt->bindParam(":register_as", $item->register_as);
             $stmt->bindParam(":public_date", $item->public_date);
             $stmt->bindParam(":made_by", $item->made_by);
             $stmt->bindParam(":observations", $item->observations);
+
             $stmt->execute();
-            // Adicione a lógica para verificar se a inserção foi bem-sucedida e exibir uma mensagem, se necessário
+
+            $this->message->setMessage("itemcriado com sucesso!", "success", "showcategories.php");
+
         }
     
         public function update(Item $item) {

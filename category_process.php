@@ -8,6 +8,7 @@ require_once("globals.php");
 $message = new Message($BASE_URL);
 $categoryDao = new CategoryDAO($conn, $BASE_URL);
 
+//resgata o tipo do formulario
 $type = filter_input(INPUT_POST, "type");
 $categoryName = filter_input(INPUT_POST, "category");
 $categoryId = filter_input(INPUT_POST, "category_id");

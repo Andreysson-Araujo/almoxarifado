@@ -249,7 +249,7 @@
     public function destroyToken() {
       $_SESSION["token"] = "";
 
-      $this->message->setMessage("Você deslogou com sucesso!", "success", "index.php");
+      $this->message->setMessage("Você deslogou com sucesso!", "success", "auth.php");
     }
 
     

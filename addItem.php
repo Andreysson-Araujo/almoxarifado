@@ -10,38 +10,41 @@ $categories = $categoryDao->findAll();
 <div class="container">
     <?php include_once("templates/backbtn.html"); ?>
     <h1 class="main-title">Adicionar Item</h1>
-    <form id="create-form form-item" action="<?= $BASE_URL?>item_process.php" method="POST">
+    <form id="create-form form-item" action="<?= $BASE_URL ?>item_process.php" method="POST">
         <input type="hidden" name="type" value="create">
         <div class="form-group">
             <label for="name">Nome do item:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome do item" required>
         </div>
         <div class="form-group">
-            <label for="phone">Patrimonio:</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Digite o numero de patrimonio se tiver" required>
+            <label for="patrimony">Patrimonio:</label>
+            <input type="text" class="form-control" id="patrimony" name="patrimony" placeholder="Digite o numero de patrimonio se tiver" required>
         </div>
         <div class="form-group">
             <label for="email">Categoria:</label>
-            <select name="" id="" class="form-control" required>
+            <select name="category" id="category" class="form-control" required>
                 <option value="">Selecione uma categoria</option>
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?= $category->id ?>"><?= $category->category ?></option>
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">
-            <label for="email">Registrar como:</label>
-            </br>
-            <input type="radio" name="oi" id="" class="form-radio">Entrada
-            <input type="radio" name="oi" id="" class="form-radio">Saida
+            <label for="register_as">Registrar como:</label>
+            <br>
+            <input type="radio" name="register_as" id="entry" value="Entrada" class="form-radio" required>
+            <label for="entry">Entrada</label>
+            <input type="radio" name="register_as" id="exit" value="Saída" class="form-radio" required>
+            <label for="exit">Saída</label>
         </div>
+
         <div class="form-group">
             <label for="date">Data:</label>
-            <input type="date" name="" id="">
+            <input type="date" name="public_date" id="public_date" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="user">Feito por:</label>
-            <input type="text" class="form-control" id="name" name="name"  value="<?= $userData->name ?>" readonly>
+            <input type="text" class="form-control" id="made_by" name="made_by" value="<?= $userData->name ?>" readonly>
         </div>
         <div class="form-group">
             <label for="description">Observações:</label>
@@ -54,4 +57,4 @@ $categories = $categoryDao->findAll();
 
 <?php
 include_once("templates/footer.php")
-    ?>
+?>
