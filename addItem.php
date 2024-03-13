@@ -21,9 +21,9 @@ $categories = $categoryDao->findAll();
             <input type="text" class="form-control" id="patrimony" name="patrimony" placeholder="Digite o numero de patrimonio se tiver" required>
         </div>
         <div class="form-group">
-            <label for="email">Categoria:</label>
+            <label for="category">Categoria:</label>
             <select name="category" id="category" class="form-control" required>
-                <option value="">Selecione uma categoria</option>
+                <option value="">Selecione uma categoria</option> <!-- Correção aqui -->
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?= $category->id ?>"><?= $category->category ?></option>
                 <?php endforeach; ?>
@@ -47,10 +47,10 @@ $categories = $categoryDao->findAll();
             <input type="text" class="form-control" id="made_by" name="made_by" value="<?= $userData->name ?>" readonly>
         </div>
         <div class="form-group">
-            <label for="description">Observações:</label>
+            <label for="observations">Observações:</label>
             <textarea type="text" class="form-control" id="observations" name="observation" placeholder="Sobre esse item produto" rows="3"></textarea>
         </div>
-        <button text="submit" id="btnbtn" class="btn btn-primary">Registrar</button>
+        <button text="submit" id="btnbtn" class="btn btn-success">Registrar</button>
     </form>
 </div>
 

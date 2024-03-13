@@ -12,7 +12,7 @@ require_once("dao/UserDAO.php");
             <label for="name">Nome da categoria:</label>
             <input type="text" class="form-control" id="category" name="category" placeholder="Digite o nome da categoria" required>
         </div>
-        <button text="submit"  class="btn btn-primary">Registrar Categoria</button>
+        <button text="submit"  class="btn btn-success">Registrar Categoria</button>
     </form>
 </div>
 
