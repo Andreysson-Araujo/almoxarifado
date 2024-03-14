@@ -70,6 +70,7 @@ $userData = $userDao->verifyToken(false);
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>showcategories.php" class="nav-link">Categorias</a>
                         </li>
+                        
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link"><strong><?= $userData->name ?></strong></a>
                         </li>

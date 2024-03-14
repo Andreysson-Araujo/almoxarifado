@@ -89,7 +89,14 @@ class ItemDAO implements ItemDAOInterface {
     }
     
 
-    public function destroy($id) {
-        // Implemente a lógica para excluir um item do banco de dados
+    public function destroy($id, $setMessage = true)  {
+        $stmt = $this->conn->prepare("DELETE FROM items WHERE id= :id");
+        $stmt->bindValue(":id", $id);
+        
+        $stmt->execute();
+        
+        
+        $this->message->setMessage("Item removido!", "success", "back");
+        
     }
 }

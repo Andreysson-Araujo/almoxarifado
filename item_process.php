@@ -54,6 +54,7 @@ if ($type === "create") {
     }
 } elseif ($type === "update") {
     $itemId = filter_input(INPUT_POST, "item_id");
+    
 
     if (!empty($itemId)) {
         $item = $itemDao->findById($itemId);
@@ -101,7 +102,11 @@ if ($type === "create") {
     } else {
         $message->setMessage("ID do item não fornecido", "error", "showitens.php");
     }
+} elseif ($type === "delete") {
+    $itemId = filter_input(INPUT_POST, "delete_item_id");
+
+    // Chama o método de exclusão no ItemDAO
+    $itemDao->destroy($itemId);
 } else {
-    $message->setMessage("Tipo de operação inválido", "error", "index.php");
+    $message->setMessage("Tipo de operação inválido", "error", "back");
 }
-?>

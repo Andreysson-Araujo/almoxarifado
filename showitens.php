@@ -7,6 +7,20 @@ require_once("models/Message.php");
 require_once("globals.php");
 
 $itemDao = new ItemDAO($conn, $BASE_URL);
+$message = new Message($BASE_URL);
+
+// Verifica se um item deve ser excluído
+if (isset($_POST['delete_item_id'])) {
+    $deleteItemId = $_POST['delete_item_id'];
+    
+    // Exclui o item
+    $itemDao->destroy($deleteItemId);
+    
+    // Define uma mensagem de sucesso para exibir ao usuário
+    $this->$message->setMessage("Item apagado com sucesso!", "success", "showitens.php");
+}
+
+// Obtém todos os itens
 $items = $itemDao->findAll();
 
 include_once("templates/header.php");
@@ -40,8 +54,8 @@ include_once("templates/header.php");
                             <a href="edititem.php?id=<?= $item->id ?>" class="btn btn-primary">Editar</a>
                             <!-- Formulário para exclusão -->
                             <form action="<?= $BASE_URL ?>showitens.php" method="POST" style="display: inline;">
-                                <input type="hidden" name="delete_category_id" value="<?= $item->id ?>">
-                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                <input type="hidden" name="delete_item_id" value="<?= $item->id ?>">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza de que deseja excluir este item?')">Excluir</button>
                             </form>
                         </td>
                     </tr>
@@ -49,6 +63,8 @@ include_once("templates/header.php");
             </tbody>
         </table>
         <a href="addItem.php" id="btnbtn" class="btn btn-success">Registrar novo item</a>
+        <a href="download_xml.php" id="btnbtn" class="btn btn-secondary">Baixar registros (XML)</a>
+
     </div>
 </div>
 
