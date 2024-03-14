@@ -60,9 +60,9 @@ class ItemDAO implements ItemDAOInterface {
         $stmt = $this->conn->prepare("SELECT * FROM items WHERE id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($data) {
-            return $this->buildItems($data);
+        $item = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($item) {
+            return $this->buildItems($item);
         }
         return null; // Retornar null se o item não for encontrado
     }
@@ -73,8 +73,21 @@ class ItemDAO implements ItemDAOInterface {
 
 
     public function update(Item $item) {
-        // Implemente a lógica para atualizar um item no banco de dados
+        $stmt = $this->conn->prepare("UPDATE items SET name = :name, patrimony = :patrimony, categories_id = :categories_id, register_as = :register_as, public_date = :public_date, made_by = :made_by, observations = :observations WHERE id = :id");
+        $stmt->bindParam(":name", $item->name);
+        $stmt->bindParam(":patrimony", $item->patrimony);
+        $stmt->bindParam(":categories_id", $item->categories_id); // Corrigido
+        $stmt->bindParam(":register_as", $item->register_as);
+        $stmt->bindParam(":public_date", $item->public_date);
+        $stmt->bindParam(":made_by", $item->made_by);
+        $stmt->bindParam(":observations", $item->observations);
+        $stmt->bindParam(":id", $item->id); // Adicionado o ID do item para a cláusula WHERE
+    
+        $stmt->execute();
+    
+        $this->message->setMessage("Item atualizado com sucesso!", "success", "back");
     }
+    
 
     public function destroy($id) {
         // Implemente a lógica para excluir um item do banco de dados

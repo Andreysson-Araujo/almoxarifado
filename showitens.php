@@ -22,6 +22,7 @@ include_once("templates/header.php");
                     <th>Patrimônio</th>
                     <th>Data de Registro</th>
                     <th>Registro de</th>
+                    <th>Feito por</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@ include_once("templates/header.php");
                         <td class="<?= ($item->register_as === 'Entrada') ? 'text-success' : 'text-danger' ?>">
                             <?= $item->register_as ?>
                         </td>
+                        <td><?= $item->made_by ?></td>
                         <td>
                             <a href="edititem.php?id=<?= $item->id ?>" class="btn btn-primary">Editar</a>
                             <!-- Formulário para exclusão -->
