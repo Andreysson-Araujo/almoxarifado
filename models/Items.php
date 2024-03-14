@@ -4,6 +4,7 @@
         public $name;
         public $patrimony;
         public $categories_id;
+        public $quantity;
         public $register_as;
         public $public_date;
         public $made_by;

@@ -15,6 +15,7 @@ if ($type === "create") {
     $name = filter_input(INPUT_POST, "name");
     $patrimony = filter_input(INPUT_POST, "patrimony");
     $categories_id = filter_input(INPUT_POST, "category");
+    $quantity = filter_input(INPUT_POST, "quantity");
     $register_as = filter_input(INPUT_POST, "register_as");
     $public_date = filter_input(INPUT_POST, "public_date");
     $made_by = filter_input(INPUT_POST, "made_by");
@@ -43,6 +44,7 @@ if ($type === "create") {
             $item->name = $name;
             $item->patrimony = $patrimony;
             $item->categories_id = $categories_id;
+            $item->quantity = $quantity;
             $item->register_as = $register_as;
             $item->public_date = $public_date;
             $item->made_by = $made_by;

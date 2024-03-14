@@ -17,7 +17,7 @@ if (isset($_POST['delete_item_id'])) {
     $itemDao->destroy($deleteItemId);
     
     // Define uma mensagem de sucesso para exibir ao usuário
-    $this->$message->setMessage("Item apagado com sucesso!", "success", "showitens.php");
+    $message->setMessage("Item apagado com sucesso!", "success", "showitens.php");
 }
 
 // Obtém todos os itens
@@ -44,7 +44,7 @@ include_once("templates/header.php");
                 <?php foreach ($items as $item) : ?>
                     <tr>
                         <td><?= $item->name ?></td>
-                        <td><?= $item->patrimony ?></td>
+                        <td><?= !empty($item->patrimony) ? $item->patrimony : "<strong>Não tem</strong>" ?></td>
                         <td><?= $item->public_date ?></td>
                         <td class="<?= ($item->register_as === 'Entrada') ? 'text-success' : 'text-danger' ?>">
                             <?= $item->register_as ?>

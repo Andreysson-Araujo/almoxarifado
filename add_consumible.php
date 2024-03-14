@@ -9,17 +9,14 @@ $categories = $categoryDao->findAll();
 ?>
 <div class="container">
     <?php include_once("templates/backbtn.html"); ?>
-    <h1 class="main-title">Adicionar Item</h1>
+    <h1 class="main-title">Adicionar bem de consumo ou periferico</h1>
     <form id="create-form form-item" action="<?= $BASE_URL ?>item_process.php" method="POST">
         <input type="hidden" name="type" value="create">
         <div class="form-group">
             <label for="name">Nome do item:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome do item" required>
         </div>
-        <div class="form-group">
-            <label for="patrimony">Patrimonio:</label>
-            <input type="text" class="form-control" id="patrimony" name="patrimony" placeholder="Digite o numero de patrimonio se tiver" required>
-        </div>
+        
         <div class="form-group">
             <label for="category">Categoria:</label>
             <select name="category" id="category" class="form-control" required>
@@ -31,7 +28,7 @@ $categories = $categoryDao->findAll();
         </div>
         <div class="form-group">
             <label for="quantity">Quantidade:</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" value="1" readonly>
+            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Digite a quantidade de perifericos">
         </div>
         <div class="form-group">
             <label for="register_as">Registrar como:</label>

@@ -21,6 +21,7 @@ class ItemDAO implements ItemDAOInterface {
         $item->name = $data['name'];
         $item->patrimony = $data['patrimony'];
         $item->categories_id = $data['categories_id'];
+        $item->quantity = $data["quantity"];
         $item->register_as = $data['register_as'];
         $item->public_date = $data['public_date'];
         $item->made_by = $data['made_by'];
@@ -29,10 +30,11 @@ class ItemDAO implements ItemDAOInterface {
     }
     
     public function create(Item $item) {
-        $stmt = $this->conn->prepare("INSERT INTO items (name, patrimony, categories_id, register_as, public_date, made_by, observations) VALUES (:name, :patrimony, :categories_id, :register_as, :public_date, :made_by, :observations)");
+        $stmt = $this->conn->prepare("INSERT INTO items (name, patrimony, categories_id, quantity ,register_as, public_date, made_by, observations) VALUES (:name, :patrimony, :categories_id, :quantity, :register_as, :public_date, :made_by, :observations)");
         $stmt->bindParam(":name", $item->name);
         $stmt->bindParam(":patrimony", $item->patrimony);
         $stmt->bindParam(":categories_id", $item->categories_id); // Corrigido
+        $stmt->bindParam(":quantity", $item->quantity);
         $stmt->bindParam(":register_as", $item->register_as);
         $stmt->bindParam(":public_date", $item->public_date);
         $stmt->bindParam(":made_by", $item->made_by);
