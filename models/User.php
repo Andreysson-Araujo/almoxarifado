@@ -34,6 +34,7 @@
     public function findyByEmail($email);
     public function findyByNickname($nickname);
     public function findyById($id);
+    public function isAdmin($id);
     public function destroyToken();
     public function changePassword(User $user);
 

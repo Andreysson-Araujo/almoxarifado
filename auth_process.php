@@ -18,14 +18,16 @@ $userDao = new UserDAO($conn, $BASE_URL);
 $type = filter_input(INPUT_POST, "type");
 
 if($type == "register") {
+
   $name = filter_input(INPUT_POST, "name");
   $nickname = filter_input(INPUT_POST, "nickname");
   $email = filter_input(INPUT_POST, "email");
+  $adm = filter_input(INPUT_POST, "user_is");
   $password = filter_input(INPUT_POST, "password");
   $confirmPassword = filter_input(INPUT_POST, "confirmpassword");
   
 
-  if($name && $nickname && $email && $password) {
+  if($name && $nickname && $email && $password && $adm !== null) {
 
     if($password === $confirmPassword) {
 
@@ -40,12 +42,14 @@ if($type == "register") {
        $user->name = $name;
        $user->nickname = $nickname;
        $user->email = $email;
+       $user->adm = $adm;
        $user->password = $finalPassword;
        $user->token = $userToken;
 
        $auth = true;
 
-       $userDao->create($user, $auth);
+       $userDao->create($user);
+       $message->setMessage("Usuário criado com sucesso!", "success", "back");
 
       } else {
 

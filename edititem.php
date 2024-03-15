@@ -30,6 +30,10 @@ include_once("templates/header.php");
             <label for="patrimony">Patrimônio a ser editado:</label>
             <input type="text" class="form-control" id="patrimony" name="patrimony" value="<?= $item->patrimony ?>">
         </div>
+        <div class="form-group">
+            <label for="quantity">Quantidade:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" value="<?= $item->quantity?>">
+        </div>
 
         <div class="form-group">
             <label for="category">Categoria a ser editada:</label>

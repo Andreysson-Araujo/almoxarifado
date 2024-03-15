@@ -65,6 +65,7 @@ if ($type === "create") {
             $name = filter_input(INPUT_POST, "name");
             $patrimony = filter_input(INPUT_POST, "patrimony");
             $categories_id = filter_input(INPUT_POST, "category");
+            $quantity = filter_input(INPUT_POST, "quantity");
             $register_as = filter_input(INPUT_POST, "register_as");
             $public_date = filter_input(INPUT_POST, "public_date");
             $made_by = filter_input(INPUT_POST, "made_by");
@@ -77,18 +78,34 @@ if ($type === "create") {
                 $message->setMessage("ERRO! Não é possível cadastrar uma data futura!", "error", "back");
             } else {
                 // Verifica se o patrimônio já está em uso, exceto para o item atual
-                $stmt = $conn->prepare("SELECT * FROM items WHERE patrimony = :patrimony AND id != :id");
-                $stmt->bindParam(":patrimony", $patrimony);
-                $stmt->bindParam(":id", $itemId);
-                $stmt->execute();
-                $existingItem = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (!empty($patrimony)) {
+                    $stmt = $conn->prepare("SELECT * FROM items WHERE patrimony = :patrimony AND id != :id");
+                    $stmt->bindParam(":patrimony", $patrimony);
+                    $stmt->bindParam(":id", $itemId);
+                    $stmt->execute();
+                    $existingItem = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($existingItem) {
-                    $message->setMessage("ERRO! Já existe um item com este número de patrimônio!", "error", "back");
+                    if ($existingItem) {
+                        $message->setMessage("ERRO! Já existe um item com este número de patrimônio!", "error", "back");
+                    } else {
+                        $item->name = $name;
+                        $item->patrimony = $patrimony;
+                        $item->categories_id = $categories_id;
+                        $item->quantity = $quantity;
+                        $item->register_as = $register_as;
+                        $item->public_date = $public_date;
+                        $item->made_by = $made_by;
+                        $item->observations = $observations;
+
+                        $itemDao->update($item);
+                        $message->setMessage("Item atualizado com sucesso", "success", "showitens.php");
+                    }
                 } else {
+                    // Se o patrimônio estiver vazio, atualize os outros campos sem verificar o patrimônio
                     $item->name = $name;
                     $item->patrimony = $patrimony;
                     $item->categories_id = $categories_id;
+                    $item->quantity = $quantity;
                     $item->register_as = $register_as;
                     $item->public_date = $public_date;
                     $item->made_by = $made_by;

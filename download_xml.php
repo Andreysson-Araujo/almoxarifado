@@ -17,6 +17,7 @@ foreach ($items as $item) {
     $xml .= '<item>';
     $xml .= '<name>' . $item->name . '</name>';
     $xml .= '<patrimony>' . $item->patrimony . '</patrimony>';
+    $xml .= '<quantity>' . $item->quantity . '</quantity>';
     $xml .= '<public_date>' . $item->public_date . '</public_date>';
     $xml .= '<register_as>' . $item->register_as . '</register_as>';
     $xml .= '<made_by>' . $item->made_by . '</made_by>';

@@ -75,10 +75,11 @@ class ItemDAO implements ItemDAOInterface {
 
 
     public function update(Item $item) {
-        $stmt = $this->conn->prepare("UPDATE items SET name = :name, patrimony = :patrimony, categories_id = :categories_id, register_as = :register_as, public_date = :public_date, made_by = :made_by, observations = :observations WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE items SET name = :name, patrimony = :patrimony, categories_id = :categories_id,  quantity = :quantity, register_as = :register_as, public_date = :public_date, made_by = :made_by, observations = :observations WHERE id = :id");
         $stmt->bindParam(":name", $item->name);
         $stmt->bindParam(":patrimony", $item->patrimony);
-        $stmt->bindParam(":categories_id", $item->categories_id); // Corrigido
+        $stmt->bindParam(":categories_id", $item->categories_id);
+        $stmt->bindParam(":quantity", $item->quantity);
         $stmt->bindParam(":register_as", $item->register_as);
         $stmt->bindParam(":public_date", $item->public_date);
         $stmt->bindParam(":made_by", $item->made_by);

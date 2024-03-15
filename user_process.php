@@ -84,7 +84,7 @@ if ($type === "update") {
     
       } else {
     
-        $message->setMessage("Informações inválidas!", "error", "index.php");
+        $message->setMessage("Informações inválidas!", "error", "back");
     
       }
 ?>

@@ -35,6 +35,7 @@ include_once("templates/header.php");
                     <th>Item</th>
                     <th>Patrimônio</th>
                     <th>Data de Registro</th>
+                    <th>Quantidade</th>
                     <th>Registro de</th>
                     <th>Feito por</th>
                     <th>Ações</th>
@@ -46,6 +47,7 @@ include_once("templates/header.php");
                         <td><?= $item->name ?></td>
                         <td><?= !empty($item->patrimony) ? $item->patrimony : "<strong>Não tem</strong>" ?></td>
                         <td><?= $item->public_date ?></td>
+                        <td><?= $item->quantity ?></td>
                         <td class="<?= ($item->register_as === 'Entrada') ? 'text-success' : 'text-danger' ?>">
                             <?= $item->register_as ?>
                         </td>

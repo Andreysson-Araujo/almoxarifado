@@ -19,6 +19,11 @@ $userDao = new UserDAO($conn, $BASE_URL);
 
 $userData = $userDao->verifyToken(false);
 
+// Obter os dados do usuário logado
+if ($userData) {
+    $is_admin = $userDao->isAdmin($userData->id);
+}
+
 
 ?>
 
@@ -39,13 +44,12 @@ $userData = $userDao->verifyToken(false);
     <!--CSS-->
     <link rel="stylesheet" href="<?= $BASE_URL ?>css/styles.css">
 </head>
-
 <body>
     <header>
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
                 <img src="<?= $BASE_URL ?>img/logo.png" alt="MovieStar" id="logo">
-                <span id="organize-title">!Organize</span>
+                <span id="organize-title">!Almoch</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" area-label="Toggle navigation">
                 <i class="fas fa-bars"> </i>
@@ -55,7 +59,9 @@ $userData = $userDao->verifyToken(false);
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
+
             </form> -->
+            
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
                     <?php if ($userData) : ?>
@@ -70,9 +76,11 @@ $userData = $userDao->verifyToken(false);
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>showcategories.php" class="nav-link">Categorias</a>
                         </li>
+                        <?php if ($is_admin) : ?>
                         <li class="nav-item">
-                            <a href="<?= $BASE_URL ?>" class="nav-link">Usuarios</a>
+                            <a href="<?= $BASE_URL ?>choseOptionsUser.php" class="nav-link">Usuarios</a>
                         </li>
+                    <?php endif; ?>
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link"><strong><?= $userData->name ?></strong></a>
                         </li>
