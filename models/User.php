@@ -26,14 +26,14 @@
   interface UserDAOInterface {
     public function buildUser($data);
     public function create(User $user, $authUser = false);
-    public function update(User $user, $redirect = true);
+    public function update(User $user);
     public function findByToken($token);
     public function verifyToken($protected = false);
     public function setTokenToSession($token, $redirect = true);
     public function authenticateUser($nickname, $password);
     public function findyByEmail($email);
     public function findyByNickname($nickname);
-    public function findyById($id);
+    public function findById($id);
     public function isAdmin($id);
     public function destroyToken();
     public function changePassword(User $user);

@@ -40,7 +40,7 @@ include_once("templates/header.php");
                         <td><?= $user->name ?></td>
                         <td><?= $user->nickname ?></td>
                         <td>
-                            <a href="editprofile.php?id=<?= $user->id ?>" class="btn btn-primary">Editar</a>
+                        <a href="edit_user.php?id=<?= $user->id ?>" class="btn btn-primary">Editar</a>
                             <!-- Formulário para exclusão -->
                             <form action="<?= $BASE_URL ?>showusers.php" method="POST" style="display: inline;">
                                 <input type="hidden" name="delete_user_id" value="<?= $user->id ?>">
@@ -52,7 +52,7 @@ include_once("templates/header.php");
             </tbody>
 
         </table>
-        <a href="addcategoria.php" id="btnbtn" class="btn btn-success">Registrar nova categoria</a>
+        <a href="add_user.php" id="btnbtn" class="btn btn-success">Registrar novo usuario</a>
     </div>
 </div>
 

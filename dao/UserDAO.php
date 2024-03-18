@@ -48,9 +48,8 @@ class UserDAO implements UserDAOInterface {
     $stmt->execute();
 
     // autenticar usuario caso seja true
-    if ($authUser) {
-        $this->setTokenToSession($user->token);
-    }
+    $this->message->setMessage("Usuário criado com sucesso!", "success", "showusers.php");
+
 
     // Removi a mensagem de erro aqui, pois não faz sentido enviar uma mensagem de erro após criar um novo usuário com sucesso.
 }
@@ -216,7 +215,7 @@ class UserDAO implements UserDAOInterface {
 }
 
 
-  public function findyById($id){
+  public function findById($id){
     $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
