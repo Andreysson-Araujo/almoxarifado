@@ -65,7 +65,7 @@ include_once("templates/header.php");
             </tbody>
         </table>
         <a href="addItem.php" id="btnbtn" class="btn btn-success">Registrar novo item</a>
-        <a href="download_xml.php" id="btnbtn" class="btn btn-secondary">Baixar registros (XML)</a>
+        <a href="download_xml.php" id="btnbtn" class="btn btn-secondary">Baixar registros </a>
 
     </div>
 </div>

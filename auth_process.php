@@ -49,6 +49,7 @@ if($type == "register") {
        $auth = true;
 
        $userDao->create($user);
+       
        $message->setMessage("Usuário criado com sucesso!", "success", "back");
 
       } else {
@@ -71,7 +72,7 @@ if($type == "register") {
 
   // Tenta autenticar Usuario
   if($userDao->authenticateUser($nickname, $password)) {
-   $message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
+   $message->setMessage("Seja bem-vindo!" , "success", "showitens.php");
 
   } else {
     //Redirecionar Usuario, se não conseguir autenticar

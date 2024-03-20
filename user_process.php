@@ -9,14 +9,11 @@ $message = new Message($BASE_URL);
 $userDao = new UserDAO($conn, $BASE_URL);
 
 $type = filter_input(INPUT_POST, "type");
-$password_type = filter_input(INPUT_POST, "password_type");
 
 // Verificar tipo de operação
 if ($type === "update") {
-    // Resgatar dados do usuário
-    $userData = $userDao->verifyToken();
-
     // Receber dados do post
+    $userId = filter_input(INPUT_POST, "user_id");
     $name = filter_input(INPUT_POST, "name");
     $nickname = filter_input(INPUT_POST, "nickname");
     $email = filter_input(INPUT_POST, "email");
@@ -25,66 +22,49 @@ if ($type === "update") {
     $user = new User();
 
     // Preencher os dados do usuário
-    $userData->name = $name;
-    $userData->nickname = $nickname;
-    $userData->email = $email;
+    $user->id = $userId;
+    $user->name = $name;
+    $user->nickname = $nickname;
+    $user->email = $email;
 
-    // Upload da imagem
-    if (isset($_FILES['image']) && !empty($_FILES["image"]["tmp_name"])) {
-        $image = $_FILES["image"];
-        $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+    // Atualizar o usuário
+    $userDao->update($user);
 
-        // Checar tipo da imagem
-        if (in_array($image["type"], $imageTypes)) {
-            // Checar se é jpg
-            if (in_array($image["type"], ["image/jpeg", "image/jpg"])) {
-                $imageFile = imagecreatefromjpeg(($image["tmp_name"]));
-            } else {
-                $imageFile = imagecreatefrompng($image["tmp_name"]);
-            }
+    // Redirecionar após a atualização
+    header("Location: showusers.php");
+    exit;
+} else if ($type === "changepassword") {
+    // Receber dados do post
+    $password = filter_input(INPUT_POST, "password");
+    $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
 
-            $imageName = $user->generateImageName();
+    // Resgatar dados do usuário
+    $userData = $userDao->verifyToken();
+    $id = $userData->id;
 
-            imagejpeg($imageFile, "./img/users/" . $imageName, 100);
+    if ($password == $confirmpassword) {
+        // Criar um novo objeto de usuário
+        $user = new User();
 
-            $userData->image = $imageName;
-        } else {
-            $message->setMessage("Tipo inválido de imagem, insira png ou jpg!", "error", "editprofile.php");
-        }
+        // Gerar senha criptografada
+        $finalPassword = $user->generatePassword($password);
+
+        // Preencher os dados do usuário
+        $user->password = $finalPassword;
+        $user->id = $id;
+
+        // Alterar a senha do usuário
+        $userDao->changePassword($user);
+
+        // Redirecionar após a alteração de senha
+        header("Location: editprofile.php");
+        exit;
+    } else {
+        // Senhas não coincidem
+        $message->setMessage("As senhas não são iguais!", "error", "back");
     }
-
-    $userDao->update($userData);
-
-    }  else if($type === "changepassword") {
-
-        // Receber dados do post
-        $password = filter_input(INPUT_POST, "password");
-        $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
-    
-        // Resgata dados do usuário
-        $userData = $userDao->verifyToken();
-        
-        $id = $userData->id;
-    
-        if($password == $confirmpassword) {
-    
-          // Criar um novo objeto de usuário
-          $user = new User();
-    
-          $finalPassword = $user->generatePassword($password);
-    
-          $user->password = $finalPassword;
-          $user->id = $id;
-    
-          $userDao->changePassword($user);
-    
-        } else {
-          $message->setMessage("As senhas não são iguais!", "error", "back");
-        }
-    
-      } else {
-    
-        $message->setMessage("Informações inválidas!", "error", "back");
-    
-      }
+} else {
+    // Tipo de operação inválido
+    $message->setMessage("Informações inválidas!", "error", "back");
+}
 ?>

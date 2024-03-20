@@ -46,7 +46,7 @@ class UserDAO implements UserDAOInterface {
     $stmt->bindParam(":adm", $user->adm); // Adicionei o bindParam para adm
 
     $stmt->execute();
-
+    header("Location: showusers.php");
     // autenticar usuario caso seja true
     $this->message->setMessage("Usuário criado com sucesso!", "success", "showusers.php");
 
@@ -220,12 +220,11 @@ class UserDAO implements UserDAOInterface {
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if ($user) {
-        return new User($user['id'], $user['name'], $user['nickname'], $user['email'], $user['password'], $user['token'], $user['adm']);
-    } else {
-        return null;
-    }
+      return $this->buildUser($user);
+  }
+  return null;
+    
   }
 
   public function isAdmin($id){

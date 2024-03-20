@@ -1,7 +1,7 @@
 <footer id="footer">
         <div id="footer-links-container">
             <ul>
-            <img src="<?= $BASE_URL ?>img/logoHorizontal.png" alt="MovieStar" id="logo_G">
+            <img src="<?= $BASE_URL ?>img/logoDrakula.png" alt="MovieStar" id="logo_G">
             </ul>
         </div>     
     </footer>
