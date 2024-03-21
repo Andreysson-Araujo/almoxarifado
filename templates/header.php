@@ -48,7 +48,7 @@ if ($userData) {
     <header>
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
-                <img src="<?= $BASE_URL ?>img/logoDrakula.png" alt="MovieStar" id="logo">
+                <img src="<?= $BASE_URL ?>img/logo.png" alt="MovieStar" id="logo">
                 <span id="organize-title"></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" area-label="Toggle navigation">
