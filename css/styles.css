@@ -169,6 +169,19 @@
     text-align: center; 
 }
 
+@media only screen and (max-width: 768px) {
+    .container-category {
+        width: 80%; /* Reduz a largura para 80% em telas menores que 768px */
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .container-category {
+        width: 90%; /* Reduz ainda mais a largura para 90% em telas menores que 576px */
+    }
+}
+
+
 .table {
     width: 100%; 
     border-collapse: collapse; 
