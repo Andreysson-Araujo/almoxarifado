@@ -20,7 +20,11 @@ require_once("templates/header.php")
                             placeholder="Digite sua senha">
                     </div>
                     <input type="submit" class="btn card-btn" value="Entrar">
+                    <br>
+                    <br>
+                    <h6>Feito por : @Detin</h6>
                 </form>
+                
             </div>
             
         </div>

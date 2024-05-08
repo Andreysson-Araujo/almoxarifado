@@ -1,6 +1,10 @@
 .navbar-brand {
     position: relative;
 }
+h6{
+    text-align: center;
+    color: #999;
+}
 
 #logo {
     width: 100px;

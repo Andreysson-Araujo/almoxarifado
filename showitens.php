@@ -36,7 +36,7 @@ include_once("templates/header.php");
                     <th>Patrimônio</th>
                     <th>Data de Registro</th>
                     <th>Quantidade</th>
-                    <th>Registro de</th>
+                    <th>Ultimo Registro</th>
                     <th>Feito por</th>
                     <th>Ações</th>
                 </tr>

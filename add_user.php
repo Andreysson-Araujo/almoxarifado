@@ -22,9 +22,9 @@ require_once("templates/header.php")
         <div class="form-group">
             <label for="user_is">Registrar como:</label>
             <br>
-            <input type="radio" name="user_is" id="user" value="0" class="form-radio" required>
+            <input type="radio" name="user_is" id="user" value=0 class="form-radio" required>
             <label for="user">Usuário</label>
-            <input type="radio" name="user_is" id="adm" value="1" class="form-radio" required>
+            <input type="radio" name="user_is" id="adm" value=1 class="form-radio" required>
             <label for="adm">Administrador</label>
         </div>
 
